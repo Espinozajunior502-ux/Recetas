@@ -285,6 +285,8 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
 .prep-prog-fill{height:100%;background:var(--sage);border-radius:99px;transition:.4s;}
 .prep-prog-txt{font-size:12px;font-weight:700;color:var(--sage);white-space:nowrap;}
 .prep-reset{border:none;background:var(--warm-dark);color:var(--text-sec);border-radius:99px;padding:6px 14px;font-family:var(--font);font-size:11px;font-weight:700;cursor:pointer;}
+.prep-reset-discreta{border:none;background:none;color:var(--text-ter);font-family:var(--font);font-size:11px;font-weight:600;cursor:pointer;text-decoration:underline;padding:4px 8px;}
+.prep-reset-discreta:active{color:var(--text-sec);}
 .prep-task{background:var(--card);border-radius:var(--rad-sm);border:1px solid var(--card-border);box-shadow:var(--sh);margin-bottom:8px;overflow:hidden;transition:opacity .2s;}
 .prep-task.done-task{opacity:.42;}
 .prep-task-header{display:flex;align-items:center;gap:12px;padding:13px 14px;cursor:pointer;}
@@ -449,6 +451,11 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
   margin-bottom:14px;line-height:1.5;
 }
 
+
+.compra-ya-wrap{margin-top:8px;background:var(--card);border:1px solid var(--card-border);border-radius:var(--rad-sm);overflow:hidden;}
+.compra-ya-header{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;font-size:12px;font-weight:700;color:var(--sage);cursor:pointer;background:var(--sage-pale);}
+.compra-ya-chevron{font-size:10px;}
+
 /* ─── SECTION EMPTY ─── */
 .empty{text-align:center;padding:48px 20px;color:var(--text-ter);}
 .empty-ico{font-size:48px;margin-bottom:12px;}
@@ -526,9 +533,11 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
   <div class="prep-prog-wrap">
     <div class="prep-prog-bar-wrap"><div class="prep-prog-fill" id="prep-fill"></div></div>
     <div class="prep-prog-txt" id="prep-prog-txt">0 / 6</div>
-    <button class="prep-reset" onclick="resetPrep()">↺ Reiniciar</button>
   </div>
   <div id="prep-contenido"></div>
+  <div style="text-align:center;padding:16px 0 4px;">
+    <button class="prep-reset-discreta" onclick="resetPrep()">↺ Reiniciar prep de la quincena</button>
+  </div>
 </div>
 
 <!-- MODAL ROTADOR -->
@@ -899,7 +908,7 @@ let COMPRAS = [
 // ESTADO
 // ══════════════════════════════════════════
 const SK='comidas_v2';
-let E={semana:1,done:{},compras:{},diasOpen:{},prep:{},prepOpen:{},rotador:{},inventario:{}};
+let E={semana:1,done:{},compras:{},diasOpen:{},prep:{},prepOpen:{},rotador:{},inventario:{},comprasYaOpen:false,invResultado:null};
 function loadE(){try{const s=localStorage.getItem(SK);if(s)E={...E,...JSON.parse(s)};}catch(e){}}
 function saveE(){localStorage.setItem(SK,JSON.stringify(E));}
 
@@ -919,7 +928,7 @@ function swTab(i){
   const ps=document.getElementById('prog-strip');
   sp.style.display=i===0?'flex':'none';
   ps.style.display=i===0?'flex':'none';
-  const subs={0:`Semana ${E.semana} · Plan quincenal`,1:'Prep · Planifica tu quincena',2:'Nevera · ¿Qué tengo?',3:'Lista de compras'};
+  const subs={0:`Semana ${E.semana} · Plan quincenal`,1:'Prep del domingo',2:'Nevera · ¿Qué tengo?',3:'Lista de compras'};
   document.getElementById('header-sub').textContent=subs[i];
   if(i===2) renderInventario();
 }
@@ -1015,7 +1024,27 @@ function toggleDone(k,dkey,ev){
     numEl.textContent=allDone?'✓':n;
   }
   actualizarProgreso();
-  if(done)toast('¡Listo! 🍽️','ok');
+  if(done){
+    toast('¡Listo! 🍽️','ok');
+    // Cerrar acordeón si el día está completo
+    const parts=k.split('_');
+    const s2=parseInt(parts[0].slice(1));
+    const n2=parseInt(parts[1].slice(1));
+    const dia2=PLAN.find(d=>d.s===s2&&d.n===n2);
+    if(dia2){
+      const allDone2=dia2.comidas.every((_,ci2)=>E.done[`s${s2}_d${n2}_c${ci2}`]);
+      if(allDone2){
+        const dkey2=`s${s2}d${n2}`;
+        E.diasOpen[dkey2]=false;
+        saveE();
+        setTimeout(()=>{
+          const card2=document.getElementById('dcard-'+dkey2);
+          if(card2) card2.classList.remove('open');
+          const bdy2=document.getElementById('pbdy-'+dkey2);
+        },700);
+      }
+    }
+  }
 }
 
 function actualizarProgreso(){
@@ -1055,31 +1084,75 @@ document.getElementById('modal-overlay').addEventListener('click',function(e){if
 function renderCompras(){
   const cont=document.getElementById('compras-contenido');
   let html='';let total=0;
+  let itemsPendientes=[];let itemsListos=[];
+
   COMPRAS.forEach(sec=>{
-    html+=`<div class="compra-seccion"><div class="compra-sec-title">${sec.sec}</div>`;
     sec.items.forEach(item=>{
       total++;
-      const done=!!E.compras[item.id];
-      html+=`<div class="compra-item ${done?'done':''}" id="cpitem-${item.id}" onclick="toggleCompra('${item.id}')">
-        <div class="ci-chk ${done?'done':''}" id="cpchk-${item.id}">${done?'✓':''}</div>
+      if(E.compras[item.id]) itemsListos.push({...item, sec:sec.sec});
+      else itemsPendientes.push({...item, sec:sec.sec});
+    });
+  });
+
+  // Agrupar pendientes por sección
+  const secciones={};
+  itemsPendientes.forEach(item=>{
+    if(!secciones[item.sec]) secciones[item.sec]=[];
+    secciones[item.sec].push(item);
+  });
+
+  Object.entries(secciones).forEach(([sec,items])=>{
+    html+=`<div class="compra-seccion"><div class="compra-sec-title">${sec}</div>`;
+    items.forEach(item=>{
+      html+=`<div class="compra-item" id="cpitem-${item.id}" onclick="toggleCompra('${item.id}')">
+        <div class="ci-chk" id="cpchk-${item.id}"></div>
         <div class="ci-nombre">${item.n}</div>
         <div class="ci-qty">${item.q}</div>
       </div>`;
     });
     html+=`</div>`;
   });
+
+  // Items listos/cubiertos — colapsados al final
+  if(itemsListos.length){
+    const yaId='compras-ya-tengo';
+    const yaOpen=!!E.comprasYaOpen;
+    html+=`<div class="compra-ya-wrap">
+      <div class="compra-ya-header" onclick="toggleComprasYa()">
+        <span>✅ Ya tengo (${itemsListos.length})</span>
+        <span class="compra-ya-chevron">${yaOpen?'▲':'▼'}</span>
+      </div>
+      <div id="${yaId}" style="display:${yaOpen?'block':'none'};">`;
+    itemsListos.forEach(item=>{
+      html+=`<div class="compra-item done" id="cpitem-${item.id}" onclick="toggleCompra('${item.id}')">
+        <div class="ci-chk done" id="cpchk-${item.id}">✓</div>
+        <div class="ci-nombre">${item.n}</div>
+        <div class="ci-qty">${item.q}</div>
+      </div>`;
+    });
+    html+=`</div></div>`;
+  }
+
+  if(!itemsPendientes.length && !itemsListos.length){
+    html=`<div class="empty"><div class="empty-ico">🛒</div><div class="empty-txt">Ve a Nevera primero para calcular qué necesitas</div></div>`;
+  }
+
   document.getElementById('cr-total').textContent=total;
   cont.innerHTML=html;
   actualizarCompras();
 }
+
+function toggleComprasYa(){
+  E.comprasYaOpen=!E.comprasYaOpen;
+  saveE();
+  const el=document.getElementById('compras-ya-tengo');
+  if(el) el.style.display=E.comprasYaOpen?'block':'none';
+  document.querySelectorAll('.compra-ya-chevron').forEach(ch=>{ch.textContent=E.comprasYaOpen?'▲':'▼';});
+}
 function toggleCompra(id){
-  E.compras[id]=!E.compras[id];saveE();
-  const done=E.compras[id];
-  document.getElementById('cpitem-'+id).classList.toggle('done',done);
-  const chk=document.getElementById('cpchk-'+id);
-  chk.classList.toggle('done',done);
-  chk.textContent=done?'✓':'';
-  actualizarCompras();
+  E.compras[id]=!E.compras[id];
+  saveE();
+  renderCompras();
 }
 function actualizarCompras(){
   const total=COMPRAS.reduce((a,s)=>a+s.items.length,0);
@@ -1630,13 +1703,16 @@ function aplicarPlanGenerado(){
   // Reset estado
   E.done={};E.diasOpen={};E.compras={};
   saveE();
+  // Resetear inventario porque el plan cambió
+  E.inventario={};
+  E.invResultado=null;
+  E.compras={};
   cerrarRotador();
   swTab(1);
   renderPlan();
   renderCompras();
-  toast('¡Plan aplicado! Ahora actualiza tu nevera 📦','ok');
-  // Mostrar aviso de siguiente paso
-  setTimeout(()=>toast('👆 Toca Nevera para decirme qué tienes','ok'),2800);
+  toast('Plan aplicado · Actualiza tu nevera 📦','ok');
+  setTimeout(()=>toast('👆 Toca Nevera antes de ir al super','ok'),2800);
 }
 
 
@@ -1655,7 +1731,7 @@ const INV_ITEMS = [
   {id:'lenteja',   nombre:'Lenteja seca',          emoji:'🫘', necesita:500, unidad:'g',        categoria:'Proteínas'},
   // Carbohidratos
   {id:'p_verde',   nombre:'Plátano verde',         emoji:'🍌', necesita:8,   unidad:'unidades', categoria:'Carbohidratos'},
-  {id:'guineo',    nombre:'Guineos',               emoji:'🍌', necesita:1,   unidad:'racimo',   categoria:'Carbohidratos'},
+  {id:'guineo',    nombre:'Guineos',               emoji:'🍌', necesita:1,   unidad:'racimo',   categoria:'Carbohidratos', toggle:true},
   // Verduras y frutas
   {id:'zanahoria', nombre:'Zanahoria',             emoji:'🥕', necesita:6,   unidad:'unidades', categoria:'Verduras'},
   {id:'brocoli',   nombre:'Brócoli',               emoji:'🥦', necesita:1,   unidad:'cabeza',   categoria:'Verduras'},
@@ -1664,12 +1740,12 @@ const INV_ITEMS = [
   {id:'limon',     nombre:'Limones',               emoji:'🍋', necesita:10,  unidad:'unidades', categoria:'Verduras'},
   // Desayuno base
   {id:'avena',     nombre:'Avena en hojuelas',     emoji:'🥣', necesita:500, unidad:'g',        categoria:'Desayuno'},
-  {id:'pan',       nombre:'Pan integral',           emoji:'🍞', necesita:1,   unidad:'funda',    categoria:'Desayuno'},
-  {id:'mani',      nombre:'Mantequilla de maní',   emoji:'🥜', necesita:1,   unidad:'frasco',   categoria:'Desayuno'},
+  {id:'pan',       nombre:'Pan integral',           emoji:'🍞', necesita:1,   unidad:'funda',    categoria:'Desayuno', toggle:true},
+  {id:'mani',      nombre:'Mantequilla de maní',   emoji:'🥜', necesita:1,   unidad:'frasco',   categoria:'Desayuno', toggle:true},
   {id:'yogur',     nombre:'Yogur natural',          emoji:'🥛', necesita:2,   unidad:'vasitos',  categoria:'Desayuno'},
   // Extras
-  {id:'aceite',    nombre:'Aceite vegetal',         emoji:'🫙', necesita:1,   unidad:'botella',  categoria:'Extras'},
-  {id:'condi',     nombre:'Sal / pimienta / orégano',emoji:'🧂',necesita:1,  unidad:'set',      categoria:'Extras'},
+  {id:'aceite',    nombre:'Aceite vegetal',         emoji:'🫙', necesita:1,   unidad:'botella',  categoria:'Extras', toggle:true},
+  {id:'condi',     nombre:'Sal / pimienta / orégano',emoji:'🧂',necesita:1,  unidad:'set',      categoria:'Extras', toggle:true},
 ];
 
 function renderInventario(){
@@ -1707,21 +1783,38 @@ function renderInventario(){
         else if(val > 0){ statusIco='!'; statusCls='warn'; }
         else { statusIco='✕'; statusCls='bad'; }
       }
-      html += `<div class="inv-item">
-        <div style="font-size:22px;flex-shrink:0;">${item.emoji}</div>
-        <div class="inv-item-info">
-          <div class="inv-item-nombre">${item.nombre}</div>
-          <div class="inv-item-necesita">Necesitas: ${item.necesita} ${item.unidad}</div>
-        </div>
-        <div class="inv-input-wrap">
-          <input class="inv-input" type="number" min="0" placeholder="0"
-            value="${tengo}"
-            onchange="guardarInventario('${item.id}',this.value)"
-            oninput="guardarInventario('${item.id}',this.value)">
-          <span class="inv-unit">${item.unidad}</span>
-        </div>
-        <div class="inv-status ${statusCls}">${statusIco}</div>
-      </div>`;
+      if(item.toggle){
+        // Toggle simple tengo/no tengo
+        const tieneToggle = inv[item.id] === 1 || inv[item.id] === true;
+        html += `<div class="inv-item">
+          <div style="font-size:22px;flex-shrink:0;">${item.emoji}</div>
+          <div class="inv-item-info">
+            <div class="inv-item-nombre">${item.nombre}</div>
+            <div class="inv-item-necesita" style="color:${tieneToggle?'var(--sage)':'var(--text-ter)'};">${tieneToggle?'✓ Tengo':'✕ No tengo'}</div>
+          </div>
+          <div class="inv-toggle-wrap">
+            <button class="inv-toggle ${tieneToggle?'on':''}" id="itgl-${item.id}" onclick="toggleInvItem('${item.id}')">
+              <div class="inv-toggle-knob"></div>
+            </button>
+          </div>
+        </div>`;
+      } else {
+        html += `<div class="inv-item">
+          <div style="font-size:22px;flex-shrink:0;">${item.emoji}</div>
+          <div class="inv-item-info">
+            <div class="inv-item-nombre">${item.nombre}</div>
+            <div class="inv-item-necesita">Necesitas: ${item.necesita} ${item.unidad}</div>
+          </div>
+          <div class="inv-input-wrap">
+            <input class="inv-input" type="number" min="0" placeholder="0"
+              value="${tengo}"
+              onchange="guardarInventario('${item.id}',this.value)"
+              oninput="guardarInventario('${item.id}',this.value)">
+            <span class="inv-unit">${item.unidad}</span>
+          </div>
+          <div class="inv-status ${statusCls}">${statusIco}</div>
+        </div>`;
+      }
     });
   });
 
@@ -1734,6 +1827,23 @@ function renderInventario(){
   }
 
   cont.innerHTML = html;
+}
+
+function toggleInvItem(id){
+  if(!E.inventario) E.inventario={};
+  E.inventario[id] = E.inventario[id]===1 ? 0 : 1;
+  saveE();
+  const btn = document.getElementById('itgl-'+id);
+  const item = INV_ITEMS.find(i=>i.id===id);
+  if(btn){
+    const on = E.inventario[id]===1;
+    btn.classList.toggle('on', on);
+    const lbl = btn.closest('.inv-item').querySelector('.inv-item-necesita');
+    if(lbl){
+      lbl.textContent = on?'✓ Tengo':'✕ No tengo';
+      lbl.style.color = on?'var(--sage)':'var(--text-ter)';
+    }
+  }
 }
 
 function guardarInventario(id, val){
