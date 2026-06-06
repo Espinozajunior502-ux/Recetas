@@ -340,6 +340,115 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
 .rot-compra-tag.fijo{background:var(--sage-pale);color:var(--sage);}
 .rot-compra-tag.nuevo{background:#fff8ee;color:#a0622a;border:1px solid #f0d9b5;}
 
+
+/* ─── INVENTARIO ─── */
+.inv-hero{background:linear-gradient(135deg,#f5f0ff,#fff);border:1px solid #d8ccf5;border-radius:var(--rad);padding:14px 16px;margin-bottom:14px;display:flex;align-items:flex-start;gap:12px;}
+.inv-hero-ico{font-size:32px;flex-shrink:0;}
+.inv-hero-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.inv-hero-sub{font-size:12px;color:var(--text-sec);line-height:1.4;}
+.inv-section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--text-sec);margin-bottom:8px;margin-top:4px;}
+.inv-item{background:var(--card);border:1px solid var(--card-border);border-radius:var(--rad-sm);padding:11px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px;box-shadow:var(--sh);}
+.inv-item-info{flex:1;}
+.inv-item-nombre{font-size:13px;font-weight:700;}
+.inv-item-necesita{font-size:11px;color:var(--text-sec);margin-top:2px;}
+.inv-input-wrap{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.inv-input{width:64px;border:1.5px solid var(--warm-deeper);border-radius:8px;padding:6px 8px;font-family:var(--font);font-size:13px;font-weight:700;text-align:center;background:var(--warm);color:var(--text);-webkit-appearance:none;}
+.inv-input:focus{outline:none;border-color:var(--sage);}
+.inv-unit{font-size:11px;color:var(--text-ter);font-weight:600;}
+.inv-status{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.inv-status.ok{background:var(--sage-pale);}
+.inv-status.warn{background:#fff8ee;}
+.inv-status.bad{background:#fff0f0;}
+.inv-btn-calcular{width:100%;padding:14px;background:linear-gradient(135deg,#6b52a8,#8b6fd4);color:#fff;border:none;border-radius:var(--rad-sm);font-family:var(--font);font-size:15px;font-weight:800;cursor:pointer;margin:14px 0;}
+.inv-resultado{background:var(--card);border:1px solid var(--card-border);border-radius:var(--rad);overflow:hidden;margin-bottom:16px;}
+.inv-resultado-header{padding:12px 14px;background:linear-gradient(135deg,#f5f0ff,#fff);border-bottom:1px solid var(--warm-dark);font-size:14px;font-weight:800;color:#6b52a8;}
+.inv-compra-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--warm-dark);}
+.inv-compra-row:last-child{border-bottom:none;}
+.inv-compra-ico{font-size:16px;width:24px;text-align:center;flex-shrink:0;}
+.inv-compra-info{flex:1;}
+.inv-compra-nombre{font-size:13px;font-weight:600;}
+.inv-compra-detalle{font-size:11px;margin-top:2px;font-weight:600;}
+.inv-compra-row.ok .inv-compra-detalle{color:var(--sage);}
+.inv-compra-row.warn .inv-compra-detalle{color:#a0622a;}
+.inv-compra-row.bad .inv-compra-detalle{color:var(--red);}
+.inv-tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;}
+.inv-tag.ok{background:var(--sage-pale);color:var(--sage);}
+.inv-tag.warn{background:#fff8ee;color:#a0622a;}
+.inv-tag.bad{background:#fff0f0;color:var(--red);}
+.inv-resumen-bar{display:flex;justify-content:space-around;padding:12px;background:var(--warm-dark);border-top:1px solid var(--warm-deeper);}
+.inv-res-stat{text-align:center;}
+.inv-res-num{font-size:20px;font-weight:800;display:block;}
+.inv-res-lbl{font-size:10px;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:.4px;}
+.inv-res-num.ok{color:var(--sage);}
+.inv-res-num.warn{color:#a0622a;}
+.inv-res-num.bad{color:var(--red);}
+
+
+/* ─── PREP FLUJO HEADER ─── */
+.prep-flujo-header{
+  background:linear-gradient(160deg,var(--sage) 0%,var(--sage-mid) 100%);
+  border-radius:var(--rad);margin-bottom:14px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(90,122,82,.25);
+}
+.prep-flujo-titulo{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px 10px;
+}
+.prep-flujo-steps{
+  display:flex;align-items:stretch;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.prep-flujo-step{
+  flex:1;display:flex;align-items:center;gap:6px;
+  padding:11px 10px;cursor:pointer;
+  border-right:1px solid rgba(255,255,255,.15);
+  transition:background .15s;-webkit-tap-highlight-color:transparent;
+}
+.prep-flujo-step:last-child{border-right:none;}
+.prep-flujo-step:active{background:rgba(255,255,255,.12);}
+.pfs-ico{font-size:16px;flex-shrink:0;}
+.pfs-txt{font-size:11px;font-weight:700;color:rgba(255,255,255,.9);flex:1;line-height:1.2;}
+.pfs-arr{font-size:12px;color:rgba(255,255,255,.4);font-weight:700;}
+.pfs-arr.last{display:none;}
+
+/* ─── MODAL ROTADOR (sheet) ─── */
+#rotador-overlay{
+  position:fixed;inset:0;z-index:900;
+  background:rgba(0,0,0,.5);
+  display:none;align-items:flex-end;
+}
+#rotador-overlay.open{display:flex;}
+.rotador-sheet{
+  background:var(--warm);width:100%;
+  border-radius:26px 26px 0 0;
+  max-height:92vh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:48px;
+  animation:slideUp .3s cubic-bezier(.32,1,.23,1);
+}
+.rot-sheet-handle{width:36px;height:4px;background:rgba(0,0,0,.12);border-radius:99px;margin:12px auto 0;}
+.rot-sheet-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px 10px;
+  border-bottom:1px solid var(--warm-dark);
+}
+.rot-sheet-title{font-size:18px;font-weight:800;color:var(--text);}
+.rot-sheet-close{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--warm-dark);border:none;cursor:pointer;
+  font-size:15px;color:var(--text-sec);
+  display:flex;align-items:center;justify-content:center;
+}
+.rot-sheet-body{padding:16px 18px 0;}
+
+/* Aviso flujo en rotador */
+.rot-flujo-aviso{
+  background:var(--sage-pale);border:1px solid var(--sage-light);
+  border-radius:var(--rad-sm);padding:10px 14px;
+  font-size:12px;color:var(--sage);font-weight:600;
+  margin-bottom:14px;line-height:1.5;
+}
+
 /* ─── SECTION EMPTY ─── */
 .empty{text-align:center;padding:48px 20px;color:var(--text-ter);}
 .empty-ico{font-size:48px;margin-bottom:12px;}
@@ -380,25 +489,38 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
 </div>
 
 
-<!-- PANEL ROTADOR -->
-<div class="panel" id="panel-rotador">
-  <div id="rotador-contenido"></div>
+<!-- PANEL INVENTARIO -->
+<div class="panel" id="panel-inv">
+  <div id="inv-contenido"></div>
 </div>
 
 <!-- PANEL PREP -->
 <div class="panel" id="panel-prep">
-  <div class="prep-hero">
-    <div class="prep-hero-top">
-      <div class="prep-hero-ico">🧑‍🍳</div>
-      <div class="prep-hero-txt">
-        <h2>Prep del domingo</h2>
-        <p>Haz esto una sola vez y la semana entera está resuelta. Sigue el orden para aprovechar el tiempo.</p>
+  <!-- FRANJA VERDE CON FLUJO -->
+  <div class="prep-flujo-header">
+    <div class="prep-flujo-titulo">
+      <span style="font-size:22px;">🧑‍🍳</span>
+      <div>
+        <div style="font-size:17px;font-weight:800;color:#fff;">Prep del domingo</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.7);margin-top:1px;">~60 min · 2 hornillas · todo listo</div>
       </div>
     </div>
-    <div class="prep-tiempo-row">
-      <div class="prep-tiempo-chip">⏱ ~60–75 min total</div>
-      <div class="prep-tiempo-chip">🔥 2 hornillas máximo</div>
-      <div class="prep-tiempo-chip">📦 Sin desperdiciar nada</div>
+    <div class="prep-flujo-steps">
+      <div class="prep-flujo-step" onclick="abrirRotador()">
+        <div class="pfs-ico">🔄</div>
+        <div class="pfs-txt">Rotar menú</div>
+        <div class="pfs-arr">→</div>
+      </div>
+      <div class="prep-flujo-step" onclick="swTab(2)">
+        <div class="pfs-ico">📦</div>
+        <div class="pfs-txt">Mi nevera</div>
+        <div class="pfs-arr">→</div>
+      </div>
+      <div class="prep-flujo-step" onclick="swTab(3)">
+        <div class="pfs-ico">🛒</div>
+        <div class="pfs-txt">Compras</div>
+        <div class="pfs-arr last"></div>
+      </div>
     </div>
   </div>
   <div class="prep-prog-wrap">
@@ -407,6 +529,23 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
     <button class="prep-reset" onclick="resetPrep()">↺ Reiniciar</button>
   </div>
   <div id="prep-contenido"></div>
+</div>
+
+<!-- MODAL ROTADOR -->
+<div id="rotador-overlay">
+  <div class="rotador-sheet">
+    <div class="rot-sheet-handle"></div>
+    <div class="rot-sheet-topbar">
+      <div class="rot-sheet-title">🔄 Cambiar quincena</div>
+      <button class="rot-sheet-close" onclick="cerrarRotador()">✕</button>
+    </div>
+    <div class="rot-sheet-body">
+      <div class="rot-flujo-aviso">
+        💡 Después de generar y aplicar el plan, ve a <strong>Nevera</strong> para indicar qué tienes y la lista de <strong>Compras</strong> se ajustará sola.
+      </div>
+      <div id="rotador-contenido"></div>
+    </div>
+  </div>
 </div>
 
 <!-- MODAL RECETA -->
@@ -427,7 +566,7 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="bnav">
+<div class="bnav" style="gap:0;">
   <button class="bnav-btn act" onclick="swTab(0)" id="bnav-0">
     <span class="bnav-ico">📅</span>
     <span class="bnav-lbl">Plan</span>
@@ -439,8 +578,8 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
     <div class="bnav-dot"></div>
   </button>
   <button class="bnav-btn" onclick="swTab(2)" id="bnav-2">
-    <span class="bnav-ico">🔄</span>
-    <span class="bnav-lbl">Rotar</span>
+    <span class="bnav-ico">📦</span>
+    <span class="bnav-lbl">Nevera</span>
     <div class="bnav-dot"></div>
   </button>
   <button class="bnav-btn" onclick="swTab(3)" id="bnav-3">
@@ -760,7 +899,7 @@ let COMPRAS = [
 // ESTADO
 // ══════════════════════════════════════════
 const SK='comidas_v2';
-let E={semana:1,done:{},compras:{},diasOpen:{},prep:{},prepOpen:{},rotador:{}};
+let E={semana:1,done:{},compras:{},diasOpen:{},prep:{},prepOpen:{},rotador:{},inventario:{}};
 function loadE(){try{const s=localStorage.getItem(SK);if(s)E={...E,...JSON.parse(s)};}catch(e){}}
 function saveE(){localStorage.setItem(SK,JSON.stringify(E));}
 
@@ -770,7 +909,7 @@ function saveE(){localStorage.setItem(SK,JSON.stringify(E));}
 let tab=0;
 function swTab(i){
   tab=i;
-  ['panel-plan','panel-prep','panel-rotador','panel-compras'].forEach((id,x)=>{
+  ['panel-plan','panel-prep','panel-inv','panel-compras'].forEach((id,x)=>{
     document.getElementById(id).classList.toggle('act',x===i);
   });
   [0,1,2,3].forEach(x=>{
@@ -780,9 +919,9 @@ function swTab(i){
   const ps=document.getElementById('prog-strip');
   sp.style.display=i===0?'flex':'none';
   ps.style.display=i===0?'flex':'none';
-  const subs={0:`Semana ${E.semana} · Plan quincenal`,1:'Prep del domingo',2:'Cambiar quincena',3:'Lista de compras'};
+  const subs={0:`Semana ${E.semana} · Plan quincenal`,1:'Prep · Planifica tu quincena',2:'Nevera · ¿Qué tengo?',3:'Lista de compras'};
   document.getElementById('header-sub').textContent=subs[i];
-  if(i===2) renderRotador();
+  if(i===2) renderInventario();
 }
 
 // ══════════════════════════════════════════
@@ -1293,6 +1432,20 @@ const COMPRAS_PROTEINAS = {
 // ══════════════════════════════════════════
 // ROTADOR: RENDER Y LÓGICA
 // ══════════════════════════════════════════
+function abrirRotador(){
+  document.getElementById('rotador-overlay').classList.add('open');
+  renderRotador();
+}
+function cerrarRotador(){
+  document.getElementById('rotador-overlay').classList.remove('open');
+}
+// Cerrar tocando fuera
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('rotador-overlay').addEventListener('click',function(e){
+    if(e.target===this) cerrarRotador();
+  });
+});
+
 function renderRotador(){
   const cont = document.getElementById('rotador-contenido');
   if(!cont) return;
@@ -1437,6 +1590,9 @@ function renderPlanGenerado(plan){
   });
   html += `</div></div>`;
 
+  // Botón ir a compras
+  html += `<button onclick="swTab(3)" style="width:100%;margin-top:12px;padding:13px;background:var(--sage);color:#fff;border:none;border-radius:var(--rad-sm);font-family:var(--font);font-size:14px;font-weight:800;cursor:pointer;">🛒 Ver lista de compras actualizada →</button>`;
+
   html += `</div>`;
   return html;
 }
@@ -1474,10 +1630,251 @@ function aplicarPlanGenerado(){
   // Reset estado
   E.done={};E.diasOpen={};E.compras={};
   saveE();
-  swTab(0);
+  cerrarRotador();
+  swTab(1);
   renderPlan();
   renderCompras();
-  toast('¡Plan aplicado! 🎉','ok');
+  toast('¡Plan aplicado! Ahora actualiza tu nevera 📦','ok');
+  // Mostrar aviso de siguiente paso
+  setTimeout(()=>toast('👆 Toca Nevera para decirme qué tienes','ok'),2800);
+}
+
+
+// ══════════════════════════════════════════
+// INVENTARIO — ¿Qué tengo en el minibar?
+// ══════════════════════════════════════════
+
+// Definición de todos los ingredientes con su cantidad necesaria por quincena
+const INV_ITEMS = [
+  // Proteínas
+  {id:'huevos',    nombre:'Huevos',              emoji:'🥚', necesita:15,  unidad:'unidades', categoria:'Proteínas'},
+  {id:'pollo',     nombre:'Pechuga de pollo',     emoji:'🍗', necesita:500, unidad:'g',        categoria:'Proteínas'},
+  {id:'carne',     nombre:'Carne de res',          emoji:'🥩', necesita:500, unidad:'g',        categoria:'Proteínas'},
+  {id:'atun',      nombre:'Atún en lata',          emoji:'🐟', necesita:4,   unidad:'latas',    categoria:'Proteínas'},
+  {id:'sardinas',  nombre:'Sardinas en lata',      emoji:'🐟', necesita:2,   unidad:'latas',    categoria:'Proteínas'},
+  {id:'lenteja',   nombre:'Lenteja seca',          emoji:'🫘', necesita:500, unidad:'g',        categoria:'Proteínas'},
+  // Carbohidratos
+  {id:'p_verde',   nombre:'Plátano verde',         emoji:'🍌', necesita:8,   unidad:'unidades', categoria:'Carbohidratos'},
+  {id:'guineo',    nombre:'Guineos',               emoji:'🍌', necesita:1,   unidad:'racimo',   categoria:'Carbohidratos'},
+  // Verduras y frutas
+  {id:'zanahoria', nombre:'Zanahoria',             emoji:'🥕', necesita:6,   unidad:'unidades', categoria:'Verduras'},
+  {id:'brocoli',   nombre:'Brócoli',               emoji:'🥦', necesita:1,   unidad:'cabeza',   categoria:'Verduras'},
+  {id:'tomate',    nombre:'Tomate',                emoji:'🍅', necesita:4,   unidad:'unidades', categoria:'Verduras'},
+  {id:'manzana',   nombre:'Manzana',               emoji:'🍎', necesita:6,   unidad:'unidades', categoria:'Verduras'},
+  {id:'limon',     nombre:'Limones',               emoji:'🍋', necesita:10,  unidad:'unidades', categoria:'Verduras'},
+  // Desayuno base
+  {id:'avena',     nombre:'Avena en hojuelas',     emoji:'🥣', necesita:500, unidad:'g',        categoria:'Desayuno'},
+  {id:'pan',       nombre:'Pan integral',           emoji:'🍞', necesita:1,   unidad:'funda',    categoria:'Desayuno'},
+  {id:'mani',      nombre:'Mantequilla de maní',   emoji:'🥜', necesita:1,   unidad:'frasco',   categoria:'Desayuno'},
+  {id:'yogur',     nombre:'Yogur natural',          emoji:'🥛', necesita:2,   unidad:'vasitos',  categoria:'Desayuno'},
+  // Extras
+  {id:'aceite',    nombre:'Aceite vegetal',         emoji:'🫙', necesita:1,   unidad:'botella',  categoria:'Extras'},
+  {id:'condi',     nombre:'Sal / pimienta / orégano',emoji:'🧂',necesita:1,  unidad:'set',      categoria:'Extras'},
+];
+
+function renderInventario(){
+  const cont = document.getElementById('inv-contenido');
+  const inv = E.inventario || {};
+
+  // Agrupar por categoría
+  const cats = {};
+  INV_ITEMS.forEach(item=>{
+    if(!cats[item.categoria]) cats[item.categoria]=[];
+    cats[item.categoria].push(item);
+  });
+
+  let html = '';
+
+  // Hero
+  html += `<div class="inv-hero">
+    <div class="inv-hero-ico">📦</div>
+    <div>
+      <div class="inv-hero-title">¿Qué tengo en el minibar?</div>
+      <div class="inv-hero-sub">Indica cuánto tienes de cada cosa y te digo exactamente qué comprar y cuánto.</div>
+    </div>
+  </div>`;
+
+  // Items por categoría
+  Object.entries(cats).forEach(([cat, items])=>{
+    html += `<div class="inv-section-title">${cat}</div>`;
+    items.forEach(item=>{
+      const tengo = inv[item.id] !== undefined ? inv[item.id] : '';
+      const val = parseFloat(tengo);
+      let statusIco = '○';
+      let statusCls = '';
+      if(!isNaN(val) && tengo !== ''){
+        if(val >= item.necesita){ statusIco='✓'; statusCls='ok'; }
+        else if(val > 0){ statusIco='!'; statusCls='warn'; }
+        else { statusIco='✕'; statusCls='bad'; }
+      }
+      html += `<div class="inv-item">
+        <div style="font-size:22px;flex-shrink:0;">${item.emoji}</div>
+        <div class="inv-item-info">
+          <div class="inv-item-nombre">${item.nombre}</div>
+          <div class="inv-item-necesita">Necesitas: ${item.necesita} ${item.unidad}</div>
+        </div>
+        <div class="inv-input-wrap">
+          <input class="inv-input" type="number" min="0" placeholder="0"
+            value="${tengo}"
+            onchange="guardarInventario('${item.id}',this.value)"
+            oninput="guardarInventario('${item.id}',this.value)">
+          <span class="inv-unit">${item.unidad}</span>
+        </div>
+        <div class="inv-status ${statusCls}">${statusIco}</div>
+      </div>`;
+    });
+  });
+
+  // Botón calcular
+  html += `<button class="inv-btn-calcular" onclick="calcularFaltantes()">📋 Calcular qué me falta</button>`;
+
+  // Resultado si existe
+  if(E.invResultado){
+    html += renderResultadoInventario(E.invResultado);
+  }
+
+  cont.innerHTML = html;
+}
+
+function guardarInventario(id, val){
+  if(!E.inventario) E.inventario={};
+  const num = parseFloat(val);
+  E.inventario[id] = isNaN(num) ? 0 : num;
+  saveE();
+  // Actualizar solo el status visual sin re-renderizar todo
+  const item = INV_ITEMS.find(i=>i.id===id);
+  if(!item) return;
+  // Encontrar el status dot del item — no hay id en el dot, buscar por contexto
+  // Re-render es más simple y rápido aquí
+  actualizarStatusItem(id, num, item);
+}
+
+function actualizarStatusItem(id, val, item){
+  // Buscar todos los inv-item y encontrar el correcto
+  document.querySelectorAll('.inv-item').forEach(el=>{
+    const input = el.querySelector('.inv-input');
+    if(!input) return;
+    // Verificar si el oninput corresponde a este id
+    const onch = input.getAttribute('onchange')||'';
+    if(!onch.includes("'"+id+"'")) return;
+    const dot = el.querySelector('.inv-status');
+    if(!dot) return;
+    dot.className='inv-status';
+    if(!isNaN(val) && val !== ''){
+      if(val >= item.necesita){ dot.textContent='✓'; dot.classList.add('ok'); }
+      else if(val > 0){ dot.textContent='!'; dot.classList.add('warn'); }
+      else { dot.textContent='✕'; dot.classList.add('bad'); }
+    } else {
+      dot.textContent='○';
+    }
+  });
+}
+
+function calcularFaltantes(){
+  const inv = E.inventario || {};
+  const resultado = {ok:[], warn:[], bad:[], sinDato:[]};
+
+  INV_ITEMS.forEach(item=>{
+    const tengo = inv[item.id] !== undefined ? parseFloat(inv[item.id]) : NaN;
+    if(isNaN(tengo)){
+      resultado.sinDato.push({...item, tengo:0, falta:item.necesita});
+      return;
+    }
+    if(tengo >= item.necesita){
+      resultado.ok.push({...item, tengo, falta:0});
+    } else if(tengo > 0){
+      resultado.warn.push({...item, tengo, falta: item.necesita - tengo});
+    } else {
+      resultado.bad.push({...item, tengo:0, falta: item.necesita});
+    }
+  });
+
+  E.invResultado = resultado;
+  saveE();
+
+  // Actualizar lista de compras real con los faltantes
+  actualizarComprasDesdeInventario(resultado);
+
+  renderInventario();
+  toast('Lista de compras actualizada 🛒','ok');
+}
+
+function actualizarComprasDesdeInventario(res){
+  // Marcar como "ya comprado" en compras lo que tenemos suficiente
+  res.ok.forEach(item=>{
+    E.compras[item.id] = true; // marcar como conseguido
+  });
+  // Desmarcar lo que falta
+  [...res.warn, ...res.bad, ...res.sinDato].forEach(item=>{
+    E.compras[item.id] = false;
+  });
+  saveE();
+}
+
+function renderResultadoInventario(res){
+  const total = INV_ITEMS.length;
+  const nOk = res.ok.length;
+  const nWarn = res.warn.length;
+  const nBad = res.bad.length + res.sinDato.length;
+
+  let html = `<div class="inv-resultado">
+    <div class="inv-resultado-header">📋 Lo que necesitas comprar</div>`;
+
+  // Faltan completamente
+  if(res.bad.length || res.sinDato.length){
+    const todos = [...res.bad, ...res.sinDato];
+    todos.forEach(item=>{
+      html += `<div class="inv-compra-row bad">
+        <div class="inv-compra-ico">${item.emoji}</div>
+        <div class="inv-compra-info">
+          <div class="inv-compra-nombre">${item.nombre}</div>
+          <div class="inv-compra-detalle">Compra ${item.necesita} ${item.unidad}</div>
+        </div>
+        <span class="inv-tag bad">❌ Falta todo</span>
+      </div>`;
+    });
+  }
+
+  // Tienen pero no suficiente
+  if(res.warn.length){
+    res.warn.forEach(item=>{
+      html += `<div class="inv-compra-row warn">
+        <div class="inv-compra-ico">${item.emoji}</div>
+        <div class="inv-compra-info">
+          <div class="inv-compra-nombre">${item.nombre}</div>
+          <div class="inv-compra-detalle">Tienes ${item.tengo} · Compra ${item.falta} ${item.unidad} más</div>
+        </div>
+        <span class="inv-tag warn">⚠️ Faltan ${item.falta}</span>
+      </div>`;
+    });
+  }
+
+  // Ya tienen suficiente
+  if(res.ok.length){
+    res.ok.forEach(item=>{
+      html += `<div class="inv-compra-row ok">
+        <div class="inv-compra-ico">${item.emoji}</div>
+        <div class="inv-compra-info">
+          <div class="inv-compra-nombre">${item.nombre}</div>
+          <div class="inv-compra-detalle">Tienes ${item.tengo} ${item.unidad} · No compres</div>
+        </div>
+        <span class="inv-tag ok">✅ Cubierto</span>
+      </div>`;
+    });
+  }
+
+  // Resumen final
+  html += `<div class="inv-resumen-bar">
+    <div class="inv-res-stat"><span class="inv-res-num bad">${nBad}</span><span class="inv-res-lbl">Comprar</span></div>
+    <div class="inv-res-stat"><span class="inv-res-num warn">${nWarn}</span><span class="inv-res-lbl">Completar</span></div>
+    <div class="inv-res-stat"><span class="inv-res-num ok">${nOk}</span><span class="inv-res-lbl">Cubierto</span></div>
+  </div>`;
+
+  // Botón ir a compras
+  html += `<button onclick="swTab(3)" style="width:100%;margin-top:12px;padding:13px;background:var(--sage);color:#fff;border:none;border-radius:var(--rad-sm);font-family:var(--font);font-size:14px;font-weight:800;cursor:pointer;">🛒 Ver lista de compras actualizada →</button>`;
+
+  html += `</div>`;
+  return html;
 }
 
 // ══════════════════════════════════════════
