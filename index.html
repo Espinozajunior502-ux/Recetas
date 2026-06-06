@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="light-content">
 <meta name="apple-mobile-web-app-title" content="Mis Comidas">
 <title>Mis Comidas</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%235a7a52'/%3E%3Ccircle cx='90' cy='72' r='32' fill='%23b8d4b0'/%3E%3Cellipse cx='90' cy='130' rx='42' ry='22' fill='%23b8d4b0'/%3E%3Ccircle cx='90' cy='68' r='22' fill='%23f9f6f0'/%3E%3Ctext x='90' y='76' text-anchor='middle' font-size='26' font-family='system-ui' fill='%235a7a52'%3E🌿%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235a7a52'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='system-ui'%3E🌿%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#5a7a52">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -306,6 +309,37 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
 .prep-paso-txt{font-size:13px;line-height:1.5;color:var(--text);}
 .prep-resultado{margin-top:10px;background:var(--sage-pale);border:1px solid var(--sage-light);border-radius:var(--rad-xs);padding:10px 12px;font-size:12px;color:var(--sage);font-weight:600;line-height:1.5;}
 
+
+/* ─── ROTADOR ─── */
+.rot-hero{display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#f0f7ff,#fff);border:1px solid #c8dff5;border-radius:var(--rad);padding:14px 16px;margin-bottom:14px;}
+.rot-hero-ico{font-size:32px;flex-shrink:0;}
+.rot-hero-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.rot-hero-sub{font-size:12px;color:var(--text-sec);line-height:1.4;}
+.rot-section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--text-sec);margin-bottom:8px;}
+.rot-prot-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
+.rot-prot-chip{background:var(--card);border:1.5px solid var(--card-border);border-radius:99px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;transition:.15s;-webkit-tap-highlight-color:transparent;}
+.rot-prot-chip.act{background:var(--sage-pale);border-color:var(--sage-light);color:var(--sage);}
+.rot-btn-generar{width:100%;padding:14px;background:linear-gradient(135deg,var(--sage),var(--sage-mid));color:#fff;border:none;border-radius:var(--rad-sm);font-family:var(--font);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:16px;letter-spacing:.2px;}
+.rot-plan-preview{background:var(--card);border:1px solid var(--card-border);border-radius:var(--rad);overflow:hidden;margin-bottom:16px;}
+.rot-plan-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--warm-dark);background:var(--sage-ultra);}
+.rot-plan-title{font-size:14px;font-weight:800;color:var(--sage);}
+.rot-aplicar-btn{background:var(--sage);color:#fff;border:none;border-radius:99px;padding:7px 14px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;}
+.rot-sem-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--text-ter);padding:8px 14px 4px;background:var(--warm-dark);}
+.rot-dia-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-bottom:1px solid var(--warm-dark);}
+.rot-dia-row:last-child{border-bottom:none;}
+.rot-dia-num{width:24px;height:24px;border-radius:8px;background:var(--sage-pale);color:var(--sage);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.rot-dia-nombre{font-size:13px;font-weight:700;margin-bottom:4px;}
+.rot-dia-comidas{display:flex;flex-direction:column;gap:3px;}
+.rot-chip{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:600;display:inline-block;}
+.rot-chip.desayuno{background:var(--orange-pale);color:var(--orange);}
+.rot-chip.cena{background:var(--blue-pale);color:var(--blue);}
+.rot-compras-preview{padding:12px 14px;background:var(--sage-ultra);border-top:1px solid var(--warm-dark);}
+.rot-compras-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--sage);margin-bottom:8px;}
+.rot-compras-items{display:flex;flex-direction:column;gap:5px;}
+.rot-compra-tag{font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;}
+.rot-compra-tag.fijo{background:var(--sage-pale);color:var(--sage);}
+.rot-compra-tag.nuevo{background:#fff8ee;color:#a0622a;border:1px solid #f0d9b5;}
+
 /* ─── SECTION EMPTY ─── */
 .empty{text-align:center;padding:48px 20px;color:var(--text-ter);}
 .empty-ico{font-size:48px;margin-bottom:12px;}
@@ -345,6 +379,11 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
   <div id="compras-contenido"></div>
 </div>
 
+
+<!-- PANEL ROTADOR -->
+<div class="panel" id="panel-rotador">
+  <div id="rotador-contenido"></div>
+</div>
 
 <!-- PANEL PREP -->
 <div class="panel" id="panel-prep">
@@ -400,6 +439,11 @@ body{font-family:var(--font);background:var(--warm);color:var(--text);padding-bo
     <div class="bnav-dot"></div>
   </button>
   <button class="bnav-btn" onclick="swTab(2)" id="bnav-2">
+    <span class="bnav-ico">🔄</span>
+    <span class="bnav-lbl">Rotar</span>
+    <div class="bnav-dot"></div>
+  </button>
+  <button class="bnav-btn" onclick="swTab(3)" id="bnav-3">
     <span class="bnav-ico">🛒</span>
     <span class="bnav-lbl">Compras</span>
     <div class="bnav-dot"></div>
@@ -562,6 +606,42 @@ const RECETAS = {
     ],
     conservacion:"Cocido en refri: hasta 2 días. Crudo: temperatura ambiente (no refrigerar)."
   },
+  carne_plancha:{
+    nombre:"Carne a la plancha",emoji:"🥩",tipo:"Cena",
+    ingredientes:[
+      {n:"Carne (res)",q:"125g — porción individual"},
+      {n:"Limón",q:"½ unidad"},
+      {n:"Aceite vegetal",q:"½ cucharadita"},
+      {n:"Sal, pimienta, orégano",q:"al gusto"},
+      {n:"Ajo (opcional)",q:"1 diente rallado"},
+    ],
+    pasos:[
+      "Si estaba congelada: pasa al minibar la noche anterior.",
+      "Sazona con sal, pimienta, orégano, limón y ajo si tienes. Deja reposar 5 min.",
+      "Sartén a fuego ALTO con el aceite — tiene que estar bien caliente antes de poner la carne.",
+      "Cocina 3-4 min por lado sin moverla — así sella bien y queda jugosa.",
+      "Deja reposar 2 minutos antes de cortar — el jugo se redistribuye.",
+    ],
+    conservacion:"Congela en porciones de 125g el día de la compra. Descongela en refri la noche anterior."
+  },
+  carne_frita:{
+    nombre:"Carne frita",emoji:"🥩",tipo:"Cena",
+    ingredientes:[
+      {n:"Carne (res)",q:"125g — cortada en tiras o bistec fino"},
+      {n:"Aceite vegetal",q:"1 cucharada"},
+      {n:"Sal, pimienta, comino",q:"al gusto"},
+      {n:"Limón",q:"½ unidad"},
+    ],
+    pasos:[
+      "Corta la carne en tiras delgadas o aplástala para que quede fina — así se fríe parejo.",
+      "Sazona con sal, pimienta y comino.",
+      "Calienta el aceite a fuego alto hasta que humee un poco.",
+      "Agrega la carne en una sola capa — no apiles o se cuece en vez de freírse.",
+      "Fríe 2-3 min por lado hasta que dore bien. La carne fina se hace rápido.",
+      "Escurre en papel y exprime limón encima al servir.",
+    ],
+    conservacion:"Congela cruda en porciones. Frita se puede guardar en refri hasta 2 días pero pierde lo crocante."
+  },
   platano_asado:{
     nombre:"Plátano verde asado",emoji:"🍌",tipo:"Acompañamiento",
     ingredientes:[
@@ -583,7 +663,7 @@ const RECETAS = {
 // ══════════════════════════════════════════
 // PLAN
 // ══════════════════════════════════════════
-const PLAN = [
+let PLAN = [
   {s:1,dia:"Lunes",n:1,comidas:[
     {tipo:"desayuno",nombre:"Avena con manzana picada",r:"avena_manzana",tip:"Café o agua de acompañamiento"},
     {tipo:"cena",nombre:"Pollo a la plancha + plátano verde sancochado + zanahoria cocida",r:"pollo_plancha",tip:"Sancocha 2 plátanos, guarda el segundo para mañana"},
@@ -645,7 +725,7 @@ const PLAN = [
 // ══════════════════════════════════════════
 // COMPRAS
 // ══════════════════════════════════════════
-const COMPRAS = [
+let COMPRAS = [
   {sec:"🥚 Proteínas",items:[
     {id:"huevos",n:"Huevos",q:"15 unidades"},
     {id:"pollo",n:"Pechuga de pollo",q:"500g"},
@@ -680,7 +760,7 @@ const COMPRAS = [
 // ESTADO
 // ══════════════════════════════════════════
 const SK='comidas_v2';
-let E={semana:1,done:{},compras:{},diasOpen:{},prep:{},prepOpen:{}};
+let E={semana:1,done:{},compras:{},diasOpen:{},prep:{},prepOpen:{},rotador:{}};
 function loadE(){try{const s=localStorage.getItem(SK);if(s)E={...E,...JSON.parse(s)};}catch(e){}}
 function saveE(){localStorage.setItem(SK,JSON.stringify(E));}
 
@@ -690,18 +770,19 @@ function saveE(){localStorage.setItem(SK,JSON.stringify(E));}
 let tab=0;
 function swTab(i){
   tab=i;
-  ['panel-plan','panel-prep','panel-compras'].forEach((id,x)=>{
+  ['panel-plan','panel-prep','panel-rotador','panel-compras'].forEach((id,x)=>{
     document.getElementById(id).classList.toggle('act',x===i);
   });
-  [0,1,2].forEach(x=>{
+  [0,1,2,3].forEach(x=>{
     document.getElementById('bnav-'+x).classList.toggle('act',x===i);
   });
   const sp=document.getElementById('semana-pill');
   const ps=document.getElementById('prog-strip');
   sp.style.display=i===0?'flex':'none';
   ps.style.display=i===0?'flex':'none';
-  const subs={0:`Semana ${E.semana} · Plan quincenal`,1:'Prep del domingo · Semana '+E.semana,2:'Lista de compras quincenal'};
+  const subs={0:`Semana ${E.semana} · Plan quincenal`,1:'Prep del domingo',2:'Cambiar quincena',3:'Lista de compras'};
   document.getElementById('header-sub').textContent=subs[i];
+  if(i===2) renderRotador();
 }
 
 // ══════════════════════════════════════════
@@ -1078,6 +1159,327 @@ function resetPrep(){
   toast('Prep reiniciado 🔄');
 }
 
+
+// ══════════════════════════════════════════
+// BANCO DE RECETAS PARA EL ROTADOR
+// ══════════════════════════════════════════
+// FIJOS (siempre en el plan — base económica)
+const FIJOS = {
+  desayuno: ['avena_manzana','avena_yogur','pan_mani','huevos_revueltos'],
+  cena_carbohidrato: ['platano_sancocho','platano_asado'],
+};
+
+// BANCO COMPLETO incluyendo recetas nuevas para rotación
+const BANCO_RECETAS = {
+  // === YA EXISTENTES ===
+  avena_manzana:{nombre:"Avena con manzana",emoji:"🥣",tipo:"desayuno",proteina:false,ingredientes_extra:[]},
+  avena_yogur:{nombre:"Avena con yogur",emoji:"🥣",tipo:"desayuno",proteina:false,ingredientes_extra:[]},
+  pan_mani:{nombre:"Pan + maní",emoji:"🍞",tipo:"desayuno",proteina:false,ingredientes_extra:[]},
+  huevos_revueltos:{nombre:"Huevos revueltos",emoji:"🍳",tipo:"desayuno",proteina:true,ingredientes_extra:[]},
+  pollo_plancha:{nombre:"Pollo a la plancha",emoji:"🍗",tipo:"cena",proteina:true,ingredientes_extra:['pollo']},
+  atun:{nombre:"Atún con tomate",emoji:"🐟",tipo:"cena",proteina:true,ingredientes_extra:['atun']},
+  lenteja:{nombre:"Menestra de lenteja",emoji:"🫘",tipo:"cena",proteina:true,ingredientes_extra:['lenteja']},
+  sardinas:{nombre:"Sardinas con brócoli",emoji:"🐟",tipo:"cena",proteina:true,ingredientes_extra:['sardinas']},
+  // === NUEVAS PARA ROTAR ===
+  huevos_duros:{nombre:"Huevos duros + queso",emoji:"🥚",tipo:"cena",proteina:true,ingredientes_extra:[],
+    receta:{
+      ingredientes:[{n:"Huevos",q:"2 unidades"},{n:"Queso casero",q:"1 tajada"},{n:"Limón",q:"¼ unidad"},{n:"Sal",q:"al gusto"}],
+      pasos:["Hierve agua, agrega los huevos y cocina exactamente 10 minutos.","Pasa a agua fría 2 min para pelar fácil.","Corta por la mitad, sirve con queso al lado y un chorrito de limón."],
+      conservacion:"Huevos duros en refri hasta 3 días (con cáscara)."
+    }
+  },
+  tortilla_queso:{nombre:"Tortilla de huevo con queso",emoji:"🍳",tipo:"desayuno",proteina:true,ingredientes_extra:[],
+    receta:{
+      ingredientes:[{n:"Huevos",q:"2 unidades"},{n:"Queso casero",q:"1 tajada rallada"},{n:"Aceite vegetal",q:"½ cucharadita"},{n:"Sal y pimienta",q:"al gusto"}],
+      pasos:["Bate los huevos con sal y pimienta.","Calienta aceite en sartén a fuego medio.","Vierte los huevos, deja cuajar el fondo 1-2 min sin tocar.","Agrega el queso rallado encima, dobla a la mitad. Apaga el fuego."],
+      conservacion:"Siempre fresca — 6 minutos y lista."
+    }
+  },
+  atun_queso:{nombre:"Atún con queso y tomate",emoji:"🐟",tipo:"cena",proteina:true,ingredientes_extra:['atun'],
+    receta:{
+      ingredientes:[{n:"Atún en lata",q:"1 lata"},{n:"Tomate",q:"1 unidad"},{n:"Queso casero",q:"1 tajada"},{n:"Limón",q:"½ unidad"}],
+      pasos:["Escurre el atún.","Pica el tomate y el queso en cubos pequeños.","Mezcla todo con limón y sal.","Sin cocción, listo en 2 minutos."],
+      conservacion:"Consumir en el momento."
+    }
+  },
+  sardinas_tomate:{nombre:"Sardinas con tomate y limón",emoji:"🐟",tipo:"cena",proteina:true,ingredientes_extra:['sardinas'],
+    receta:{
+      ingredientes:[{n:"Sardinas en lata",q:"1 lata"},{n:"Tomate",q:"1 unidad, picado"},{n:"Limón",q:"½ unidad"},{n:"Sal y pimienta",q:"al gusto"}],
+      pasos:["Escurre las sardinas.","Pica el tomate en cubos.","Mezcla, exprime el limón, sazona.","Sin cocción — listo en 2 minutos."],
+      conservacion:"Consumir en el momento."
+    }
+  },
+  carne_plancha:{nombre:"Carne a la plancha",emoji:"🥩",tipo:"cena",proteina:true,ingredientes_extra:['carne'],
+    receta:{
+      ingredientes:[{n:"Carne (res)",q:"125g"},{n:"Limón",q:"½ unidad"},{n:"Aceite",q:"½ cucharadita"},{n:"Sal, pimienta, orégano",q:"al gusto"}],
+      pasos:["Sazona con sal, pimienta, orégano y limón. Reposa 5 min.","Sartén MUY caliente con aceite.","3-4 min por lado sin mover. Reposa 2 min antes de cortar."],
+      conservacion:"Congela en porciones de 125g. Descongela en refri la noche anterior."
+    }
+  },
+  carne_frita:{nombre:"Carne frita",emoji:"🥩",tipo:"cena",proteina:true,ingredientes_extra:['carne'],
+    receta:{
+      ingredientes:[{n:"Carne (res) en tiras",q:"125g"},{n:"Aceite vegetal",q:"1 cucharada"},{n:"Sal, pimienta, comino",q:"al gusto"},{n:"Limón",q:"½ unidad"}],
+      pasos:["Corta en tiras delgadas y sazona.","Aceite bien caliente a fuego alto.","Fríe 2-3 min por lado en una sola capa.","Escurre y exprime limón al servir."],
+      conservacion:"Cruda congelada dura 3 semanas. Frita en refri hasta 2 días."
+    }
+  },
+  lenteja_huevo:{nombre:"Lenteja + huevo sancochado",emoji:"🫘",tipo:"cena",proteina:true,ingredientes_extra:['lenteja'],
+    receta:{
+      ingredientes:[{n:"Lenteja (porción congelada)",q:"1 porción"},{n:"Huevo",q:"1 unidad"},{n:"Sal",q:"al gusto"}],
+      pasos:["Descongela la lenteja (o calienta en sartén con chorrito de agua).","Hierve el huevo 10 minutos, pela y corta.","Sirve el huevo sobre la lenteja caliente."],
+      conservacion:"Lenteja congelada: 3 semanas."
+    }
+  },
+};
+
+// Días de la semana
+const DIAS_SEMANA = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+
+// Desayunos disponibles por rotación
+const POOL_DESAYUNOS = ['avena_manzana','avena_yogur','pan_mani','huevos_revueltos','tortilla_queso'];
+// Proteínas de cena disponibles
+const POOL_PROTEINAS_CENA = [
+  {key:'pollo_plancha', label:'Pollo a la plancha 🍗', comp:'pollo'},
+  {key:'atun',          label:'Atún con tomate 🐟',    comp:'atun'},
+  {key:'atun_queso',    label:'Atún + queso 🐟',       comp:'atun'},
+  {key:'sardinas',      label:'Sardinas con brócoli 🐟',comp:'sardinas'},
+  {key:'sardinas_tomate',label:'Sardinas + tomate 🐟', comp:'sardinas'},
+  {key:'lenteja',       label:'Menestra de lenteja 🫘', comp:'lenteja'},
+  {key:'lenteja_huevo', label:'Lenteja + huevo 🫘',    comp:'lenteja'},
+  {key:'huevos_duros',  label:'Huevos duros + queso 🥚',comp:null},
+  {key:'carne_plancha', label:'Carne a la plancha 🥩',   comp:'carne'},
+  {key:'carne_frita',   label:'Carne frita 🥩',           comp:'carne'},
+];
+// Carbohidratos de cena
+const POOL_CARBO_CENA = ['platano_sancocho','platano_asado'];
+
+// Compras base que SIEMPRE van (no cambian)
+const COMPRAS_BASE = [
+  {sec:"🥚 Proteínas base",items:[
+    {id:"huevos",n:"Huevos",q:"15 unidades"},
+  ]},
+  {sec:"🍌 Carbohidratos",items:[
+    {id:"p_verde",n:"Plátano verde",q:"8 unidades"},
+    {id:"guineo",n:"Guineos",q:"1 racimo pequeño"},
+  ]},
+  {sec:"🥦 Verduras y frutas",items:[
+    {id:"zanahoria",n:"Zanahoria",q:"6 unidades"},
+    {id:"tomate",n:"Tomate",q:"4 unidades"},
+    {id:"manzana",n:"Manzana",q:"6 unidades"},
+    {id:"limon",n:"Limones",q:"10 unidades"},
+  ]},
+  {sec:"🌾 Desayuno base",items:[
+    {id:"avena",n:"Avena en hojuelas",q:"500g"},
+    {id:"pan",n:"Pan integral",q:"1 funda"},
+    {id:"mani",n:"Mantequilla de maní",q:"1 frasco pequeño"},
+    {id:"yogur",n:"Yogur natural",q:"2 vasitos"},
+  ]},
+  {sec:"🧴 Extras",items:[
+    {id:"aceite",n:"Aceite vegetal",q:"250ml"},
+    {id:"condi",n:"Sal / pimienta / orégano",q:"c/n"},
+  ]},
+];
+
+// Proteínas opcionales según selección
+const COMPRAS_PROTEINAS = {
+  pollo:    {id:"pollo",    n:"Pechuga de pollo",  q:"500g"},
+  atun:     {id:"atun",     n:"Atún en lata",       q:"4 latas"},
+  sardinas: {id:"sardinas", n:"Sardinas en lata",   q:"2 latas"},
+  lenteja:  {id:"lenteja",  n:"Lenteja seca",       q:"500g"},
+  brocoli:  {id:"brocoli",  n:"Brócoli",            q:"1 cabeza pequeña"},
+  carne:    {id:"carne",    n:"Carne de res",        q:"500g (en porciones de 125g)"},
+};
+
+// ══════════════════════════════════════════
+// ROTADOR: RENDER Y LÓGICA
+// ══════════════════════════════════════════
+function renderRotador(){
+  const cont = document.getElementById('rotador-contenido');
+  if(!cont) return;
+
+  // Leer selecciones guardadas
+  const sel = E.rotador || {};
+
+  // Proteínas seleccionadas (máx 3 para no complicar la compra)
+  const protSelec = sel.proteinas || ['pollo_plancha','atun','lenteja','sardinas'];
+
+  let html = '';
+
+  // Hero
+  html += `<div class="rot-hero">
+    <div class="rot-hero-ico">🔄</div>
+    <div>
+      <div class="rot-hero-title">Generador de quincena</div>
+      <div class="rot-hero-sub">Elige tus proteínas y genera un plan nuevo. Los desayunos y carbohidratos se rotan solos.</div>
+    </div>
+  </div>`;
+
+  // Selector de proteínas
+  html += `<div class="rot-section-title">Elige tus proteínas para esta quincena</div>`;
+  html += `<div class="rot-prot-grid">`;
+  POOL_PROTEINAS_CENA.forEach(p=>{
+    const act = protSelec.includes(p.key);
+    html += `<div class="rot-prot-chip ${act?'act':''}" id="rprot-${p.key}" onclick="toggleProtSelec('${p.key}')">
+      ${p.label}
+    </div>`;
+  });
+  html += `</div>`;
+
+  // Botón generar
+  html += `<button class="rot-btn-generar" onclick="generarQuincena()">✨ Generar nueva quincena</button>`;
+
+  // Preview del plan generado
+  if(sel.planGenerado){
+    html += renderPlanGenerado(sel.planGenerado);
+  }
+
+  cont.innerHTML = html;
+}
+
+function toggleProtSelec(key){
+  if(!E.rotador) E.rotador={};
+  if(!E.rotador.proteinas) E.rotador.proteinas=['pollo_plancha','atun','lenteja','sardinas'];
+  const idx = E.rotador.proteinas.indexOf(key);
+  if(idx>=0){
+    if(E.rotador.proteinas.length<=2){toast('Selecciona al menos 2 proteínas','');return;}
+    E.rotador.proteinas.splice(idx,1);
+  } else {
+    E.rotador.proteinas.push(key);
+  }
+  saveE();
+  const chip = document.getElementById('rprot-'+key);
+  if(chip) chip.classList.toggle('act', E.rotador.proteinas.includes(key));
+}
+
+function generarQuincena(){
+  if(!E.rotador) E.rotador={};
+  const protDisp = (E.rotador.proteinas||['pollo_plancha','atun','lenteja','sardinas']).slice();
+
+  // Shuffle helper
+  const shuffle = arr=>{const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+  const plan = [];
+  // Desayunos rotados uniformemente
+  const desShuf = shuffle([...POOL_DESAYUNOS,...POOL_DESAYUNOS]).slice(0,14);
+  // Proteínas cena rotadas
+  const protPool = [];
+  while(protPool.length<14) protPool.push(...shuffle(protDisp));
+  const protShuf = protPool.slice(0,14);
+  // Carbohidratos
+  const carboPool = [];
+  while(carboPool.length<14) carboPool.push(...shuffle(POOL_CARBO_CENA));
+  const carboShuf = carboPool.slice(0,14);
+
+  for(let i=0;i<14;i++){
+    const semana = i<7?1:2;
+    const diaIdx = i%7;
+    const protKey = protShuf[i];
+    const protObj = POOL_PROTEINAS_CENA.find(p=>p.key===protKey);
+    const carboKey = carboShuf[i];
+    const carboObj = BANCO_RECETAS[carboKey];
+    plan.push({
+      semana, dia:DIAS_SEMANA[diaIdx], num:i+1,
+      desayuno:{key:desShuf[i], nombre:BANCO_RECETAS[desShuf[i]]?.nombre||desShuf[i]},
+      cena:{
+        proteina:{key:protKey, nombre:protObj?.label||protKey},
+        carbo:{key:carboKey, nombre:carboObj?.nombre||carboKey}
+      }
+    });
+  }
+
+  // Calcular lista de compras dinámica
+  const protUsadas = new Set(protShuf.map(k=>POOL_PROTEINAS_CENA.find(p=>p.key===k)?.comp).filter(Boolean));
+  // Si hay brócoli en alguna cena de sardinas, agregar brócoli
+  const usaBrocoli = protShuf.some(k=>k==='sardinas');
+  if(usaBrocoli) protUsadas.add('brocoli');
+
+  E.rotador.planGenerado = plan;
+  E.rotador.comprasGeneradas = [...protUsadas];
+  saveE();
+  renderRotador();
+  toast('¡Nueva quincena generada! ✨','ok');
+}
+
+function renderPlanGenerado(plan){
+  let html = `<div class="rot-plan-preview">
+    <div class="rot-plan-header">
+      <div class="rot-plan-title">Tu nueva quincena</div>
+      <button class="rot-aplicar-btn" onclick="aplicarPlanGenerado()">Aplicar este plan →</button>
+    </div>`;
+
+  [1,2].forEach(sem=>{
+    html += `<div class="rot-sem-label">Semana ${sem}</div>`;
+    plan.filter(d=>d.semana===sem).forEach(d=>{
+      html += `<div class="rot-dia-row">
+        <div class="rot-dia-num">${d.num}</div>
+        <div class="rot-dia-info">
+          <div class="rot-dia-nombre">${d.dia}</div>
+          <div class="rot-dia-comidas">
+            <span class="rot-chip desayuno">🌅 ${d.desayuno.nombre}</span>
+            <span class="rot-chip cena">🌙 ${d.cena.proteina.nombre} + ${d.cena.carbo.nombre}</span>
+          </div>
+        </div>
+      </div>`;
+    });
+  });
+
+  // Lista de compras generada
+  html += `<div class="rot-compras-preview">
+    <div class="rot-compras-title">📦 Lo que necesitas comprar</div>
+    <div class="rot-compras-items">`;
+  // Base siempre
+  html += `<div class="rot-compra-tag fijo">✅ Mismos de siempre (avena, pan, maní, yogur, huevos, plátanos, verduras)</div>`;
+  // Proteínas variables
+  const compP = E.rotador?.comprasGeneradas||[];
+  compP.forEach(comp=>{
+    const item = COMPRAS_PROTEINAS[comp];
+    if(item) html += `<div class="rot-compra-tag nuevo">+ ${item.n} — ${item.q}</div>`;
+  });
+  html += `</div></div>`;
+
+  html += `</div>`;
+  return html;
+}
+
+function aplicarPlanGenerado(){
+  if(!E.rotador?.planGenerado){return;}
+  if(!confirm('¿Aplicar este plan? Se reemplaza el plan actual y se reinician los chequeos.')) return;
+
+  // Convertir plan generado al formato de PLAN
+  const nuevoPlan = E.rotador.planGenerado.map(d=>({
+    s: d.semana,
+    dia: d.dia,
+    n: d.num,
+    comidas:[
+      {tipo:'desayuno', nombre: BANCO_RECETAS[d.desayuno.key]?.nombre||d.desayuno.nombre, r: d.desayuno.key, tip:null},
+      {tipo:'cena', nombre: (BANCO_RECETAS[d.cena.proteina.key]?.nombre||d.cena.proteina.nombre)+' + '+(BANCO_RECETAS[d.cena.carbo.key]?.nombre||d.cena.carbo.nombre), r: d.cena.proteina.key, tip:null},
+    ]
+  }));
+
+  // Actualizar PLAN global
+  PLAN.length=0;
+  nuevoPlan.forEach(d=>PLAN.push(d));
+
+  // Actualizar COMPRAS con proteínas nuevas
+  const compP = E.rotador.comprasGeneradas||[];
+  // Rebuild compras
+  COMPRAS.length=0;
+  COMPRAS_BASE.forEach(s=>COMPRAS.push(JSON.parse(JSON.stringify(s))));
+  // Agregar sección proteínas
+  const protItems = compP.map(comp=>COMPRAS_PROTEINAS[comp]).filter(Boolean);
+  if(protItems.length){
+    COMPRAS.unshift({sec:"🥚 Proteínas",items:protItems});
+  }
+
+  // Reset estado
+  E.done={};E.diasOpen={};E.compras={};
+  saveE();
+  swTab(0);
+  renderPlan();
+  renderCompras();
+  toast('¡Plan aplicado! 🎉','ok');
+}
+
 // ══════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════
@@ -1087,7 +1489,9 @@ document.querySelectorAll('.hpill-btn')[E.semana===1?1:0].classList.remove('act'
 document.getElementById('semana-pill').style.display='flex';
 document.getElementById('prog-strip').style.display='flex';
 renderPlan();
+renderPrep();
 renderCompras();
+renderRotador();
 </script>
 </body>
 </html>
